@@ -12,10 +12,10 @@ import {
   View,
   withAuthenticator,
 } from "@aws-amplify/ui-react";
-import { listTodos } from "./graphql/queries";
+import { listNotes } from "./graphql/queries";
 import {
-  createTodo as createNoteMutation,
-  deleteTodo as deleteNoteMutation,
+  createNote as createNoteMutation,
+  deleteNote as deleteNoteMutation,
 } from "./graphql/mutations";
 
 const App = ({ signOut }) => {
@@ -26,8 +26,8 @@ const App = ({ signOut }) => {
   }, []);
 
   async function fetchNotes() {
-    const apiData = await API.graphql({ query: listTodos });
-    const notesFromAPI = apiData.data.listTodos.items;
+    const apiData = await API.graphql({ query: listNotes });
+    const notesFromAPI = apiData.data.listNotes.items;
     await Promise.all(
       notesFromAPI.map(async (note) => {
         if (note.image) {
